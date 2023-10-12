@@ -1,0 +1,64 @@
+@keyframes horizontalGridMove {
+    from {margin-left: 0px}
+    to {margin-left: -8000px}
+}
+
+@keyframes horizontalShipMove {
+    from {margin-left: 0px}
+    to {margin-left: 8000px}
+}
+
+html, body {
+    max-width: 100%;
+    overflow: hidden
+}
+
+.ship-images {
+    height: 100px;
+    width: 100px;
+    margin-left: 0px;
+    z-index: 1;
+    margin-top: 0px;
+    position: none;
+}
+
+.row {
+    border-bottom: 5px solid black;
+    margin-bottom: 120px;
+    z-index: -1;
+}
+
+#row-1 {
+    margin-top: 120px;
+}
+
+#row-5 {
+    border-bottom: none;
+}
+
+.ship-button {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+#grid {
+    width: 8000px;
+    max-height: 750px;
+    margin-left: 0px;
+}
+
+.cat-images {
+    height: 100px;
+    width: 100px;
+    margin-top: 0px;
+    margin-left: 0px;
+    position: absolute    
+}
+
+#moon {
+    margin-left: 8015px;
+    position: absolute;
+    max-height: 1000px;
+    max-width: 1000px;
+    margin-top: -400px;
+}
