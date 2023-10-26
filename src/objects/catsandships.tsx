@@ -61,15 +61,25 @@ export type MarginsType = string[]
 
 type NumericalMarginsType = number[]
 
-const shipRightBorder = 108
+const shipRightBorder: number = 108
 
-const shipLeftBorder = 8
+const shipLeftBorder: number = 8
 
 const marginsArr: MarginsType = ["-110px", "15px", "145px", "270px", "385px"]
 
 const catMarginsArrVert: MarginsType = ["-235px", "-110px", "20px", "145px", "260px"]
 
-const catMarginsArrHor: NumericalMarginsType = [300, 520, 740, 960, 1180, 1400, 1620, 1840, 2060, 2280, 2500, 2720, 2940, 3160, 3380, 3600, 3820, 4040, 4260, 4480, 4700, 4920, 5140, 5360, 5580, 5800, 6020, 6240, 6460, 6680, 6900, 7120, 7340, 7560, 7780]
+function generateCatMarginsArrHor(): NumericalMarginsType {
+    const arr = []
+    let currentNum = 500
+    do {
+      arr.push(currentNum)
+      currentNum += 300
+    } while(currentNum < 35000)
+    return arr
+}
+
+const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
 
 export type UseShipContextType = { options: CatsAndShips, shipMarginsArr: MarginsType, catVertMargArr: MarginsType, catHorMargArr: NumericalMarginsType, shipRightBorder: number, shipLeftBorder: number }
 
