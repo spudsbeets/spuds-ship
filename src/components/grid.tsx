@@ -93,10 +93,12 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     (document.getElementById("grid") as HTMLDivElement).style.animationName = "horizontalGridMove";
     (document.getElementById("grid") as HTMLDivElement).style.animationDuration = "100s";
     (document.getElementById("grid") as HTMLDivElement).style.animationTimingFunction = "linear";
+    (document.getElementById("grid") as HTMLDivElement).style.animationDelay = "1s";
     for (let i = 0; i < playerShipImageArr.length; i++) {
       (playerShipImageArr[i] as HTMLImageElement).style.animationName = "horizontalShipMove";
       (playerShipImageArr[i] as HTMLImageElement).style.animationDuration = "100s";     
-      (playerShipImageArr[i] as HTMLImageElement).style.animationTimingFunction = "linear";  
+      (playerShipImageArr[i] as HTMLImageElement).style.animationTimingFunction = "linear"; 
+      (playerShipImageArr[i] as HTMLImageElement).style.animationDelay = "1s"; 
     }
   }
 
@@ -159,6 +161,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           loserDiv.setAttribute('class', 'endgame-divs');
           (document.getElementById("center-side") as HTMLDivElement).appendChild(loserDiv); 
           const playAgainButton = document.createElement('button')
+          playAgainButton.setAttribute('class', 'button')
           playAgainButton.setAttribute('id', 'play-again-button');
           playAgainButton.textContent = 'Play again?';
           playAgainButton.onclick = function() {location.reload()};
@@ -176,6 +179,9 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           for (let j = 0; j < shipArr.length; j++) {
             (playerShipImageArr[j] as HTMLImageElement).remove()         
           }
+          for (let j = 0; j < arr.length; j++) {
+            (arr[j] as HTMLImageElement).remove()
+          }
         }
       }
     }
@@ -186,6 +192,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           winnerDiv.setAttribute('class', 'endgame-divs');
           (document.getElementById("center-side") as HTMLDivElement).appendChild(winnerDiv); 
           const playAgainButton = document.createElement('button')
+          playAgainButton.setAttribute('class', 'button')
           playAgainButton.setAttribute('id', 'play-again-button');
           playAgainButton.textContent = 'Play again?';
           playAgainButton.onclick = function() {location.reload()};
@@ -202,6 +209,9 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           (document.getElementById("ship-title"))?.remove()
           for (let j = 0; j < shipArr.length; j++) {
             (playerShipImageArr[j] as HTMLImageElement).remove()         
+          }
+          for (let j = 0; j < arr.length; j++) {
+            (arr[j] as HTMLImageElement).remove()
           }
     }
   }
@@ -257,7 +267,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           <div id="left-side">
             <h1 id="game-title">Spud's Ship</h1>
             <h1 id="ship-title">{playerShipName}</h1>
-            <button id="to-the-moon-button" onClick={() => {
+            <button id="to-the-moon-button" className="button" onClick={() => {
               createShipImage(playerShip)
               setShip(playerShipImageArr, shipMarginsArr)
               moveShipHorizontally()
@@ -265,9 +275,15 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
               populateInterval
               collisionCheck
               document.getElementById("to-the-moon-button")?.remove()
+              document.getElementById("instruction-div")?.remove()
               }}>To the moon?</button>
             </div>  
-            <div id="center-side"></div>
+            <div id="center-side">
+              <div id="instruction-div">
+              <p id="instructions">use these OR your up & down arrow keys to move your ship</p>
+              <p id="instruction-arrow">&#9654;</p>
+              </div>
+            </div>
             <div id="right-side">
               <button id="up-button" className="direction-buttons" onClick={() => {
                 for (let i = 0; i < playerShipImageArr.length; i++) {

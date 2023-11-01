@@ -20,12 +20,14 @@ const ShipSelect = ({ playerShip, setPlayerShip }: PropsType) => {
       let secondShip = document.getElementById("second-ship-button")
       let thirdShip = document.getElementById("third-ship-button")
       let firstShip = document.getElementById("first-ship-button")
-      if (secondShip === null || thirdShip === null || firstShip === null) {
+      let shipSelectTitle = document.getElementById("ship-select-title")
+      if (secondShip === null || thirdShip === null || firstShip === null || shipSelectTitle === null) {
         throw new Error("no ship!")
       } else {
         secondShip.remove()
         thirdShip.remove()
         firstShip.remove()
+        shipSelectTitle.remove()
       }
     }
   },[playerShip])
@@ -42,6 +44,7 @@ const ShipSelect = ({ playerShip, setPlayerShip }: PropsType) => {
   
    return(
      <div id="ship-select">
+        <h1 id="ship-select-title">Choose your ship</h1>
         <div id="ship-options">
         {options.map(element => element.value === 0 || element.value === 1 || element.value === 2 ? generateImgButton(element) : null)}
         {playerShip.img === '' ? null : <ShipName playerShipName={playerShipName} setPlayerShipName={setPlayerShipName} playerShip={playerShip} />}
