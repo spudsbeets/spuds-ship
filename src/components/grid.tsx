@@ -131,10 +131,10 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     return randomMarg.toString() + "px"
   }
 
-  function generateRandomizedSaying(value: string): string {
+  function generateRandomizedSaying(val: string): string {
     const loseArr = ['that was a lot of cats', 'the moon sure is far away', 'the stars devour us all in time', 'meowch', "well would you look at that, spud's spinning through space again", 'gravity shmavity', 'where do we go from here capn spud?']
     const winArr = ['it is made of cheese!', 'lets hope my 300 cat clones are okay!', 'MOOOOOOOON', 'how did all those cat clones get out here in the first place', 'martians are real and they are funny lil guys', 'mars next?']
-    if (value = "loss") {
+    if (val === "loss") {
       return loseArr[Math.floor(Math.random()*loseArr.length)]
     } else {
       return winArr[Math.floor(Math.random()*loseArr.length)]
@@ -164,7 +164,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           playAgainButton.setAttribute('class', 'button')
           playAgainButton.setAttribute('id', 'play-again-button');
           playAgainButton.textContent = 'Play again?';
-          playAgainButton.onclick = function() {location.reload()};
+          playAgainButton.onclick = function() {window.location.reload()};
           const loserHeader = document.createElement('h2')
           loserHeader.setAttribute('class', 'endgame-headers');
           loserHeader.innerHTML = "You lose..." 
@@ -195,7 +195,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
           playAgainButton.setAttribute('class', 'button')
           playAgainButton.setAttribute('id', 'play-again-button');
           playAgainButton.textContent = 'Play again?';
-          playAgainButton.onclick = function() {location.reload()};
+          playAgainButton.onclick = function() {window.location.reload()};
           const winnerHeader = document.createElement('h2')
           winnerHeader.setAttribute('class', 'endgame-headers');
           winnerHeader.innerHTML = "You win!" 
