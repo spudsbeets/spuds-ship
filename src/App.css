@@ -30,10 +30,10 @@
 }
 
 @keyframes moonMovin {
-    0% {margin-top: 520px}
+    0% {margin-top: 420px}
     31% {margin-top: 120px}
     69% {margin-top: -200px}
-    100% {margin-top: 520px}
+    100% {margin-top: 420px}
 }
 
 html, body {
@@ -56,7 +56,12 @@ html, body {
 }
 
 .row {
-    border-bottom: 5px solid black;
+    border-image: linear-gradient(30deg, #787878, #d4af37, #e9967a, #ffb6c1) 27;
+    border-width: 5px;
+    border-style: solid;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
     margin-bottom: 120px;
     z-index: -1;
 }
@@ -328,7 +333,7 @@ header {
 }
 
 #moon-opener {
-    margin-top: 520px;
+    margin-top: 420px;
     margin-right: 100px;
     animation-name: moonMovin;
     animation-duration: 21s;

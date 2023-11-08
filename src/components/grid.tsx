@@ -137,7 +137,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     if (val === "loss") {
       return loseArr[Math.floor(Math.random()*loseArr.length)]
     } else {
-      return winArr[Math.floor(Math.random()*loseArr.length)]
+      return winArr[Math.floor(Math.random()*winArr.length)]
     }
   }
 
