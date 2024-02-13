@@ -261,6 +261,8 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
       })
     },[])
 
+    document.body.style.overflow = "hidden"
+
     return(
         <div id="gameplay">
         <header>

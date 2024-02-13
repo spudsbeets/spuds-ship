@@ -1,15 +1,9 @@
 import './App.css'
-import { useState } from 'react'
-import { CatOrShip } from './objects/catsandships'
-import Opener from './components/opener'
-import ShipSelect from './components/shipSelect'
+import NewOpener from './components/newOpener'
 
 function App() {
 
-  const [isStart, setIsStart] = useState<boolean>(false)
-  const [playerShip, setPlayerShip] = useState<CatOrShip>({ img: '', id: '' })
-
-  const pageContent = !isStart ? <Opener setIsStart={setIsStart}/> : <ShipSelect playerShip={playerShip} setPlayerShip={setPlayerShip} />
+  const pageContent = <NewOpener />
 
   return (
    <>

@@ -13,35 +13,37 @@
     to {opacity: 1}
 }
 
-@keyframes shipsMovin1 {
-    0% {margin-top: 200px}
-    35% {margin-top: 421px}
-    55% {margin-top: 315px}
-    78% {margin-top: 441px}
-    100% {margin-top: 200px}
+@keyframes shipBobbin1 {
+    0% { margin-top: 0px }
+    25% { margin-top: 50px }
+    50% { margin-top: 0px }
+    75% { margin-top: 50px }
+    100% { margin-top: 0px }
 }
 
-@keyframes shipsMovin2 {
-    0% {margin-right: 500px}
-    21% {margin-right: 221px}
-    44% {margin-right: 301px}
-    90% {margin-right: 1100px}
-    100% {margin-right: 500px}
+@keyframes shipBobbin2 {
+    0% { margin-top: 125px }
+    25% { margin-top: 175px }
+    50% { margin-top: 125px }
+    75% { margin-top: 175px }
+    100% { margin-top: 125px }
 }
 
-@keyframes moonMovin {
-    0% {margin-top: 420px}
-    31% {margin-top: 120px}
-    69% {margin-top: -200px}
-    100% {margin-top: 420px}
+@keyframes shipBobbin3 {
+    0% { margin-top: 150px }
+    25% { margin-top: 200px }
+    50% { margin-top: 150px }
+    75% { margin-top: 200px }
+    100% { margin-top: 150px }
 }
 
 html, body {
     max-width: 100%;
-    overflow: hidden;
     background-image: url(./src/images/space.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
     color: #f9f1f1;
     font-family: 'Indie Flower', cursive;
 }
@@ -72,20 +74,6 @@ html, body {
 
 #row-5 {
     border-bottom: none;
-}
-
-.ship-button {
-    height: 200px;
-    width: 200px;
-    background-color: transparent;
-    border: none;
-    margin-right: 100px;
-    margin-left: 175px;
-    margin-top: 200px
-}
-
-.ship-button:hover, .button:hover {
-    cursor: pointer
 }
 
 .ship-button .ship-images, #player-ship .ship-images {
@@ -178,79 +166,6 @@ header {
     animation-duration: 1s
 }
 
-#title-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center
-}
-
-.button {
-    width: 100px;
-    height: 75px;
-    font-family: 'Indie Flower', cursive;
-    color: #f9f1f1;
-    font-size: 1.5em;
-    background-color: #708090;
-    border-radius: 50%;
-    border: solid #607080 5px;
-}
-
-#title {
-    font-size: 7em
-}
-
-#sub-title {
-    font-size: 1.5em;
-    margin-top: 200px
-}
-
-#ship-select-title {
-    font-size: 4em;
-    text-align: center;
-    animation-name: fadein;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out
-}
-
-#ship-options {
-    animation-name: fadein;
-    animation-duration: 3.5s;
-    animation-timing-function: ease-in-out
-}
-
-#ship-name-header {
-    font-size: 4em;
-    animation-name: fadein;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out
-}
-
-#ship-name-select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation-name: fadein;
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out
-}
-
-#player-ship {
-    margin-top: 100px;
-    animation-name: fadein;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out
-}
-
-#ship-name-textbox {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 250px;
-    font-size: 2em;
-    font-family: 'Indie Flower', cursive;
-    background-color: transparent;
-    color: #f9f1f1
-}
-
 #game-title, #ship-title {
     text-align: center
 }
@@ -289,55 +204,556 @@ header {
     text-align: right;
 }
 
-#enter-grid-button {
+#title-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.button {
+    width: 100px;
+    height: 75px;
+    font-family: 'Indie Flower', cursive;
+    color: #f9f1f1;
+    font-size: 1.5em;
+    background-color: #708090;
+    border-radius: 50%;
+    border: solid #607080 5px;
+}
+
+#opener {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#title-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#title {
+    font-size: 4em;
+    margin-top: 1%;
+}
+
+#sub-title {
+    font-size: 1.5em
+}
+
+#start-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 200px;
+    height: 120px;
+    font-size: 2.5em;
+}
+
+#ship-select-title {
+    font-size: 3em;
+    text-align: center;
     animation-name: fadein;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-timing-function: ease-in-out
 }
 
-.opener-images {
-    width: 150px;
-    height: 150px
-}
-
-.opener-images-div {
+#ship-options {
+    animation-name: fadein;
+    animation-duration: 3.5s;
+    animation-timing-function: ease-in-out;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 0px
+    justify-content: flex-start;
+    flex-wrap: wrap
 }
 
-#ship-1-opener {
-    margin-left: 50px;
-    margin-top: 200px;
-    animation-name: shipsMovin1;
-    animation-duration: 22s;
-    animation-delay: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear
+.ship-button {
+    height: 80px;
+    width: 80px;
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-top: 50px;
+    background-color: transparent;
+    border: none
 }
 
-#ship-2-opener {
-    margin-right: 500px;
-    margin-top: 20px;
-    animation-name: shipsMovin2;
-    animation-duration: 19s;
-    animation-delay: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear
+.ship-button:hover, .button:hover {
+    cursor: pointer
 }
 
-#ship-3-opener {
-    margin-top: 350px;
+#first-ship {
+    margin-top: 0px;
+    animation: shipBobbin1 25s ease-in-out 1s infinite
 }
 
-#moon-opener {
-    margin-top: 420px;
-    margin-right: 100px;
-    animation-name: moonMovin;
-    animation-duration: 21s;
-    animation-delay: 2.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear
+#second-ship {
+    margin-top: 125px;
+    animation: shipBobbin2 25s ease-in-out 2.5s infinite
+}
+
+#third-ship {
+    margin-top: 150px;
+    animation: shipBobbin3 25s ease-in-out 4s infinite
+}
+
+.chosen-ship-images {
+    height: 250px;
+    width: 250px;
+    margin-left: 440px
+}
+
+#ship-name-header {
+    font-size: 3em;
+    text-align: left;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out
+}
+
+#ship-name-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation-name: fadein;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    margin-top: 150px;
+}
+
+#player-ship {
+    margin-top: 100px;
+    animation-name: fadein;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out
+}
+
+#ship-name-textbox {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 250px;
+    font-size: 2em;
+    font-family: 'Indie Flower', cursive;
+    background-color: transparent;
+    color: #f9f1f1
+}
+
+@media screen and (max-width: 1200px) {
+
+    @keyframes shipBobbin1 {
+        0% { margin-top: 0px }
+        25% { margin-top: 40px }
+        50% { margin-top: 0px }
+        75% { margin-top: 40px }
+        100% { margin-top: 0px }
+    }
+    
+    @keyframes shipBobbin2 {
+        0% { margin-top: 40px }
+        25% { margin-top: 90px }
+        50% { margin-top: 40px }
+        75% { margin-top: 90px }
+        100% { margin-top: 40px }
+    }
+    
+    @keyframes shipBobbin3 {
+        0% { margin-top: 50px }
+        25% { margin-top: 100px }
+        50% { margin-top: 50px }
+        75% { margin-top: 100px }
+        100% { margin-top: 50px }
+    }
+
+    #title {
+        font-size: 3.2em;
+    }
+    
+    #sub-title {
+        font-size: 1.3em
+    }
+    
+    #start-button {
+        width: 160px;
+        height: 100px;
+        font-size: 2em;
+    }
+    
+    #ship-select-title {
+        font-size: 2.3em;
+    }
+
+    .ship-button .ship-images, #player-ship .ship-images {
+        height: 175px;
+        width: 175px
+    }
+
+    .ship-button {
+        height: 175px;
+        width: 175px;
+        margin-right: 80px;
+        margin-left: 80px
+    }
+    
+    #second-ship {
+        margin-top: 40px;
+    }
+    
+    #third-ship {
+        margin-top: 50px;
+    }
+    
+    .chosen-ship-images {
+        height: 180px;
+        width: 180px;
+        margin-left: 360px
+    }
+    
+    #ship-name-header {
+        font-size: 2.3em;
+    }
+    
+    #ship-name-select {
+        margin-top: 120px;
+    }
+    
+    #player-ship {
+        margin-top: 80px;
+    }
+    
+    #ship-name-textbox {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 200px;
+        font-size: 1.6em
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+
+    @keyframes shipBobbin1 {
+        0% { margin-top: 0px }
+        25% { margin-top: 25px }
+        50% { margin-top: 0px }
+        75% { margin-top: 25px }
+        100% { margin-top: 0px }
+    }
+    
+    @keyframes shipBobbin2 {
+        0% { margin-top: 60px }
+        25% { margin-top: 85px }
+        50% { margin-top: 60px }
+        75% { margin-top: 85px }
+        100% { margin-top: 60px }
+    }
+    
+    @keyframes shipBobbin3 {
+        0% { margin-top: 40px }
+        25% { margin-top: 65px }
+        50% { margin-top: 40px }
+        75% { margin-top: 65px }
+        100% { margin-top: 40px }
+    }
+
+    #title {
+        font-size: 2.6em;
+    }
+    
+    #sub-title {
+        font-size: 1em
+    }
+    
+    #start-button {
+        width: 120px;
+        height: 75px;
+        font-size: 1.6em;
+    }
+    
+    #ship-select-title {
+        font-size: 1.8em;
+    }
+
+    .ship-button {
+        height: 120px;
+        width: 120px;
+        margin-right: 50px;
+        margin-left: 50px
+    }
+    
+    #second-ship {
+        margin-top: 60px;
+    }
+    
+    #third-ship {
+        margin-top: 40px;
+    }
+
+    .ship-button .ship-images, #player-ship .ship-images {
+        height: 120px;
+        width: 120px
+    }
+    
+    .chosen-ship-images {
+        height: 130px;
+        width: 130px;
+        margin-left: 300px
+    }
+    
+    #ship-name-header {
+        font-size: 1.8em;
+    }
+    
+    #ship-name-select {
+        margin-top: 90px;
+    }
+    
+    #player-ship {
+        margin-top: 60px;
+    }
+    
+    #ship-name-textbox {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 160px;
+        font-size: 1.3em
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
+    @keyframes shipBobbin1 {
+        0% { margin-top: 0px }
+        25% { margin-top: 20px }
+        50% { margin-top: 0px }
+        75% { margin-top: 20px }
+        100% { margin-top: 0px }
+    }
+    
+    @keyframes shipBobbin2 {
+        0% { margin-top: 40px }
+        25% { margin-top: 60px }
+        50% { margin-top: 40px }
+        75% { margin-top: 60px }
+        100% { margin-top: 40px }
+    }
+    
+    @keyframes shipBobbin3 {
+        0% { margin-top: 30px }
+        25% { margin-top: 50px }
+        50% { margin-top: 30px }
+        75% { margin-top: 50px }
+        100% { margin-top: 30px }
+    }
+
+    #title {
+        font-size: 2em;
+    }
+    
+    #sub-title {
+        font-size: .75em
+    }
+    
+    #start-button {
+        width: 90px;
+        height: 55px;
+        font-size: 1.2em;
+    }
+    
+    #ship-select-title {
+        font-size: 1.3em;
+    }
+
+    .ship-button {
+        height: 80px;
+        width: 80px;
+        margin-right: 30px;
+        margin-left: 30px
+    }
+    
+    #second-ship {
+        margin-top: 40px;
+    }
+    
+    #third-ship {
+        margin-top: 30px;
+    }
+
+    .ship-button .ship-images, #player-ship .ship-images {
+        height: 80px;
+        width: 80px
+    }
+    
+    .chosen-ship-images {
+        height: 100px;
+        width: 100px;
+        margin-left: 220px
+    }
+    
+    #ship-name-header {
+        font-size: 1.35em;
+    }
+    
+    #ship-name-select {
+        margin-top: 65px;
+    }
+    
+    #player-ship {
+        margin-top: 40px;
+    }
+    
+    #ship-name-textbox {
+        margin-top: 22px;
+        margin-bottom: 22px;
+        width: 130px;
+        font-size: 1.1em
+    }
+    
+    @media screen and (min-height: 550px) {
+        @keyframes shipBobbin1 {
+            0% { margin-top: 0px }
+            25% { margin-top: 25px }
+            50% { margin-top: 0px }
+            75% { margin-top: 25px }
+            100% { margin-top: 0px }
+        }
+        
+        @keyframes shipBobbin2 {
+            0% { margin-top: 60px }
+            25% { margin-top: 85px }
+            50% { margin-top: 60px }
+            75% { margin-top: 85px }
+            100% { margin-top: 60px }
+        }
+        
+        @keyframes shipBobbin3 {
+            0% { margin-top: 40px }
+            25% { margin-top: 65px }
+            50% { margin-top: 40px }
+            75% { margin-top: 65px }
+            100% { margin-top: 40px }
+        }
+    
+        #title {
+            font-size: 2.6em;
+        }
+        
+        #sub-title {
+            font-size: 1em
+        }
+        
+        #start-button {
+            width: 120px;
+            height: 75px;
+            font-size: 1.6em;
+        }
+        
+        #ship-select-title {
+            font-size: 1.8em;
+        }
+    
+        .ship-button {
+            height: 120px;
+            width: 120px;
+            margin-right: 50px;
+            margin-left: 50px
+        }
+        
+        #second-ship {
+            margin-top: 60px;
+        }
+        
+        #third-ship {
+            margin-top: 40px;
+        }
+    
+        .ship-button .ship-images, #player-ship .ship-images {
+            height: 120px;
+            width: 120px
+        }
+        
+        .chosen-ship-images {
+            height: 130px;
+            width: 130px;
+            margin-left: 300px
+        }
+        
+        #ship-name-header {
+            font-size: 1.8em;
+        }
+        
+        #ship-name-select {
+            margin-top: 90px;
+        }
+        
+        #player-ship {
+            margin-top: 60px;
+        }
+        
+        #ship-name-textbox {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 160px;
+            font-size: 1.3em
+        }
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    #title {
+        font-size: 2.6em;
+    }
+    
+    #sub-title {
+        display: none
+    }
+    
+    #start-button {
+        display: none
+    }
+    
+    #ship-select-title {
+        display: none
+    }
+
+    .ship-button {
+        display: none
+    }
+    
+    #second-ship {
+        display: none
+    }
+    
+    #third-ship {
+        display: none
+    }
+
+    .ship-button .ship-images, #player-ship .ship-images {
+        display: none
+    }
+    
+    .chosen-ship-images {
+        display: none
+    }
+    
+    #ship-name-header {
+        display: none
+    }
+    
+    #ship-name-select {
+        display: none
+    }
+    
+    #player-ship {
+        display: none
+    }
+    
+    #ship-name-textbox {
+        display: none
+    }
+
 }
