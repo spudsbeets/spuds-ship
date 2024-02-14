@@ -457,6 +457,16 @@ header {
         100% { margin-top: 40px }
     }
 
+    @keyframes horizontalGridMove {
+        from {margin-left: 0px}
+        to {margin-left: -20000px}
+    }
+    
+    @keyframes horizontalShipMove {
+        from {margin-left: 0px}
+        to {margin-left: 20000px}
+    }
+
     #title {
         font-size: 2.6em;
     }
@@ -520,9 +530,82 @@ header {
         font-size: 1.3em
     }
 
+    .ship-images {
+        height: 66px;
+        width: 66px;
+        margin-left: 0px;
+        z-index: 1;
+        margin-top: 0px;
+        position: none;
+    }
+    
+    .row {
+        margin-bottom: 90px;
+    }
+    
+    #row-1 {
+        margin-top: 90px;
+    }
+
+    #grid {
+        width: 20000px;
+    }
+    
+    .cat-images {
+        height: 66px;
+        width: 66px;   
+    }
+    
+    #moon {
+        margin-left: 20015px;
+        margin-top: -350px;
+    }
+    
+    #to-the-moon-button {
+        margin-top: -10px;
+    }
+    
+    .endgame-divs {
+        border: solid black 2.2px;
+        width: 220px;
+        height: 150px;
+        margin-top: 300px;
+        border: solid #426761 6px
+    }
+    
+    .endgame-headers {
+        font-size: 1em
+    }
+    
+    .endgame-phrases {
+        font-size: .8em
+    }
+    
+    #play-again-button {
+        font-size: .8em;
+        border: solid #405060 3.5px
+    }
+    
+    .direction-buttons {
+        margin-top: 20px;
+    }
+    
+    .explosion-images {
+        width: 300px;
+        height: 300px
+    }
+
+    #game-title {
+        font-size: 2em
+    }
+
+    #instruction-div {
+        margin-left: 500px
+    }
+
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
 
     @keyframes shipBobbin1 {
         0% { margin-top: 0px }
@@ -610,6 +693,94 @@ header {
         width: 130px;
         font-size: 1.1em
     }
+
+    .ship-images {
+        height: 32px;
+        width: 32px
+    }
+      
+    .row {
+        border-width: 2px;
+        margin-bottom: 40px;
+    }
+      
+    #row-1 {
+        margin-top: 40px;
+    }
+
+    .cat-images {
+        height: 32px;
+        width: 32px  
+      }
+      
+      #moon {
+        margin-top: -160px;
+      }
+
+      .endgame-divs {
+        width: 120px;
+        height: 80px;
+        margin-top: 140px
+      }
+      
+      .endgame-headers {
+        font-size: .75em;
+        margin-top: -4px
+      }
+      
+      .endgame-phrases {
+        margin-top: -3px;
+        font-size: .4em
+      }
+      
+      #play-again-button {
+        font-size: .4em;
+        width: 80px;
+      }
+
+      #to-the-moon-button {
+        margin-top: -5px;
+        width: 100px;
+        height: 40px;
+        font-size: 10px
+      }
+
+      .direction-buttons {
+        width: 50px;
+        height: 30px;
+        margin-top: 10px;
+        margin-right: 5px;
+      }
+      
+      .explosion-images {
+        width: 120px;
+        height: 120px
+      }
+
+      #game-title {
+        font-size: 1em
+      }
+      
+      #ship-title {
+        font-size: .8em;
+        margin-top: -10px
+      }
+      
+      #instruction-div {
+        margin-left: 300px
+      }
+      
+      #instruction-arrow {
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: .6em
+      }
+      
+      #instructions {
+        font-size: 10px;
+        text-align: right;
+      }
+      
     
     @media screen and (min-height: 550px) {
         @keyframes shipBobbin1 {

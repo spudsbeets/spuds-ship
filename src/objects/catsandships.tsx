@@ -59,31 +59,15 @@ const playerOptions: CatsAndShips = [
 
 export type MarginsType = string[]
 
-type NumericalMarginsType = number[]
+export type NumericalMarginsType = number[]
 
 const shipRightBorder: number = 108
 
 const shipLeftBorder: number = 8
 
-const marginsArr: MarginsType = ["-115px", "10px", "140px", "265px", "390px"]
+export type UseShipContextType = { options: CatsAndShips, shipRightBorder: number, shipLeftBorder: number }
 
-const catMarginsArrVert: MarginsType = ["-240px", "-115px", "15px", "140px", "265px"]
-
-function generateCatMarginsArrHor(): NumericalMarginsType {
-    const arr = []
-    let currentNum = 500
-    do {
-      arr.push(currentNum)
-      currentNum += 300
-    } while(currentNum < 35000)
-    return arr
-}
-
-const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
-
-export type UseShipContextType = { options: CatsAndShips, shipMarginsArr: MarginsType, catVertMargArr: MarginsType, catHorMargArr: NumericalMarginsType, shipRightBorder: number, shipLeftBorder: number }
-
-const initContext: UseShipContextType = { options: [], shipMarginsArr: [], catVertMargArr: [], catHorMargArr: [], shipRightBorder: 0, shipLeftBorder: 0 }
+const initContext: UseShipContextType = { options: [], shipRightBorder: 0, shipLeftBorder: 0 }
 
 const ShipContext = createContext<UseShipContextType>(initContext)
 
@@ -94,7 +78,7 @@ type ChildrenType = {
 export const ShipProvider = ({ children }: ChildrenType): ReactElement => {
 
     return(
-     <ShipContext.Provider value={{ options: playerOptions, shipMarginsArr: marginsArr, catVertMargArr: catMarginsArrVert, catHorMargArr: catMarginsArrHor, shipRightBorder: shipRightBorder, shipLeftBorder: shipLeftBorder }}>
+     <ShipContext.Provider value={{ options: playerOptions, shipRightBorder: shipRightBorder, shipLeftBorder: shipLeftBorder }}>
        {children}
      </ShipContext.Provider>
     )

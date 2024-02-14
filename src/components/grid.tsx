@@ -2,7 +2,7 @@ import '../App.css'
 import { CatOrShip } from '../objects/catsandships'
 import { useEffect } from 'react'
 import UseShips from '../hooks/UseShips'
-import { MarginsType } from '../objects/catsandships'
+import { MarginsType, NumericalMarginsType } from '../objects/catsandships'
 
 type PropsType = {
     playerShipName: string,
@@ -11,7 +11,7 @@ type PropsType = {
 
 const Grid = ({ playerShipName, playerShip }: PropsType) => {
 
-  const { options, shipMarginsArr, catVertMargArr, catHorMargArr, shipRightBorder, shipLeftBorder } = UseShips()
+  const { options, shipRightBorder, shipLeftBorder } = UseShips()
 
   const playerShipImageArr = document.getElementsByClassName("ship-images") as HTMLCollectionOf<Element>
 
@@ -29,6 +29,70 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     (document.getElementById("row-1") as HTMLDivElement).appendChild(ship)
   }
 
+  function getScreenWidth(): number {
+    return window.innerWidth
+  }
+
+  function getCatAmount(): number {
+    if (getScreenWidth() < 1000) {
+      return 275
+    } else {
+      return 320
+    }
+  }
+
+  function getMarginsArr(): MarginsType {
+    if (getScreenWidth() >= 1000) {
+        return ["-115px", "10px", "140px", "265px", "390px"]
+    } else if (getScreenWidth() < 1000 && getScreenWidth() >= 850) {
+        return ["-85px", "15px", "110px", "210px", "300px"]
+    } else {
+        return ["-40px", "5px", "50px", "92px", "137px"]
+    }
+}
+
+function getCatMarginsArrVert(): MarginsType {
+    if (getScreenWidth() >= 1000) {
+        return ["-240px", "-115px", "15px", "140px", "265px"]
+    } else if (getScreenWidth() < 1000 && getScreenWidth() >= 850) {
+        return ["-180px", "-80px", "15px", "115px", "205px"]
+    } else {
+        return ["-82px", "-37px", "8px", "50px", "95px"]
+    }
+}
+
+function getCatMarginsHorArr(): number[] {
+    if (getScreenWidth() >= 1000) {
+        return [500, 300, 35000]
+    } else if (getScreenWidth() < 1000 && getScreenWidth() >= 850) {
+        return [400, 210, 20000]
+    } else {
+        return [220, 145, 20000]
+    }
+}
+
+function collisionCheckDigits(): number[] {
+  if (getScreenWidth() >= 1000) {
+      return [5, 20]
+  } else if (getScreenWidth() < 1000 && getScreenWidth() >= 850) {
+      return [8, 26]
+  } else {
+      return [50, 10]
+  }
+}
+
+function generateCatMarginsArrHor(): NumericalMarginsType {
+    const arr = []
+    let currentNum = getCatMarginsHorArr()[0]
+    do {
+      arr.push(currentNum)
+      currentNum += getCatMarginsHorArr()[1]
+    } while(currentNum < getCatMarginsHorArr()[2])
+    return arr
+}
+
+const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
+
   function generateSortedCatHorMargArr(arr: number[]): MarginsType {
     const margArr: number[] = []
     do {
@@ -39,7 +103,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
       } else {
         null
       }
-    } while(margArr.length < 320)
+    } while(margArr.length < getCatAmount())
     const sortedMargArr: number[] = margArr.sort((a, b) => {return a - b})
     const toStringArr: MarginsType = sortedMargArr.toString().split(",").map(element => element + "px")
     return toStringArr
@@ -50,13 +114,13 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     do {
       const randomIndex = Math.floor(Math.random() * arr.length)
       margArr.push(arr[randomIndex])
-    } while(margArr.length < 320)
+    } while(margArr.length < getCatAmount())
     return margArr
   }
 
-  const horArr = generateSortedCatHorMargArr(catHorMargArr)
+  const horArr = generateSortedCatHorMargArr(catMarginsArrHor)
 
-  const vertArr = generateCatVertMargArr(catVertMargArr)
+  const vertArr = generateCatVertMargArr(getCatMarginsArrVert())
 
   function setOriginalKey(): string {
     const date = new Date()
@@ -69,7 +133,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     do {
       const randomIndex = Math.floor(Math.random() * 4)
       catArr.push(possibleCats[randomIndex])
-    } while(catArr.length < 320)
+    } while(catArr.length < getCatAmount())
     const row2 = document.getElementById("row-2") as HTMLDivElement
     row2.innerHTML = `<div>` + catArr.map(function(cat) {
       return `<img src="` + cat.img + `" alt="` + cat.id + `" key={setOriginalKey()} class="cat-images"></img>`}
@@ -79,7 +143,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
      (catArrElements[index] as HTMLImageElement).style.marginTop = vArr[index];
      (catArrElements[index] as HTMLImageElement).style.marginLeft = hArr[index];
      index += 1
-    } while(index < 320)
+    } while(index < getCatAmount())
   }
 
   function setShip(arr: HTMLCollectionOf<Element>, arr2: string[]): void {
@@ -146,7 +210,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
     const moonLeftBorder = document.getElementById("moon")?.getBoundingClientRect().left as number
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].getBoundingClientRect().top === shipPositionTop) {
-        if (arr[i].getBoundingClientRect().left < (shipRightBorder - 5) && arr[i].getBoundingClientRect().right > (shipLeftBorder + 20)) {
+        if (arr[i].getBoundingClientRect().left < (shipRightBorder - collisionCheckDigits()[0]) && arr[i].getBoundingClientRect().right > (shipLeftBorder + collisionCheckDigits()[1])) {
           clearInterval(collisionCheck)
           clearInterval(populateInterval)
           const explosion1 = document.createElement('img')
@@ -225,17 +289,17 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
         if (event.key === "ArrowUp") { 
           for (let i = 0; i < playerShipImageArr.length; i++) {
             switch ((playerShipImageArr[i] as HTMLImageElement).style.marginTop) {
-              case shipMarginsArr[1]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[0]
+              case getMarginsArr()[1]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[0]
                 break;
-              case shipMarginsArr[2]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[1] 
+              case getMarginsArr()[2]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[1] 
                 break;
-              case shipMarginsArr[3]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[2]
+              case getMarginsArr()[3]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[2]
                 break;  
-              case shipMarginsArr[4]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[3]
+              case getMarginsArr()[4]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[3]
                 break;                                   
             }
           }
@@ -243,17 +307,17 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
         if (event.key === "ArrowDown") {
           for (let i = 0; i < playerShipImageArr.length; i++) {
             switch ((playerShipImageArr[i] as HTMLImageElement).style.marginTop) {
-              case shipMarginsArr[0]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[1]
+              case getMarginsArr()[0]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[1]
                 break;
-              case shipMarginsArr[1]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[2]
+              case getMarginsArr()[1]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[2]
                 break;
-              case shipMarginsArr[2]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[3]
+              case getMarginsArr()[2]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[3]
                 break;  
-              case shipMarginsArr[3]:
-                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[4] 
+              case getMarginsArr()[3]:
+                (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[4] 
                 break;                                   
             }
           }
@@ -271,7 +335,7 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
             <h1 id="ship-title">{playerShipName}</h1>
             <button id="to-the-moon-button" className="button" onClick={() => {
               createShipImage(playerShip)
-              setShip(playerShipImageArr, shipMarginsArr)
+              setShip(playerShipImageArr, getMarginsArr())
               moveShipHorizontally()
               generateCatImgs(options, vertArr, horArr)
               populateInterval
@@ -290,17 +354,17 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
               <button id="up-button" className="direction-buttons" onClick={() => {
                 for (let i = 0; i < playerShipImageArr.length; i++) {
                   switch ((playerShipImageArr[i] as HTMLImageElement).style.marginTop) {
-                    case shipMarginsArr[1]:
-                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[0]
+                    case getMarginsArr()[1]:
+                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[0]
                       break;
-                    case shipMarginsArr[2]:
-                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[1] 
+                    case getMarginsArr()[2]:
+                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[1] 
                       break;
-                    case shipMarginsArr[3]:
-                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[2]
+                    case getMarginsArr()[3]:
+                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[2]
                       break;  
-                    case shipMarginsArr[4]:
-                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[3]
+                    case getMarginsArr()[4]:
+                      (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[3]
                       break;                                   
                   }
                 }
@@ -308,17 +372,17 @@ const Grid = ({ playerShipName, playerShip }: PropsType) => {
               <button id="down-button" className="direction-buttons" onClick={() => {
                 for (let i = 0; i < playerShipImageArr.length; i++) {
                   switch ((playerShipImageArr[i] as HTMLImageElement).style.marginTop) {
-                  case shipMarginsArr[0]:
-                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[1]
+                  case getMarginsArr()[0]:
+                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[1]
                     break;
-                  case shipMarginsArr[1]:
-                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[2]
+                  case getMarginsArr()[1]:
+                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[2]
                     break;
-                  case shipMarginsArr[2]:
-                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[3]
+                  case getMarginsArr()[2]:
+                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[3]
                     break;  
-                  case shipMarginsArr[3]:
-                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = shipMarginsArr[4] 
+                  case getMarginsArr()[3]:
+                    (playerShipImageArr[i] as HTMLImageElement).style.marginTop = getMarginsArr()[4] 
                     break;                                   
                   }
                 }                
