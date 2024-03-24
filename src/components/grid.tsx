@@ -395,7 +395,7 @@ const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
          <div id="row-3" className="row"></div>
          <div id="row-4" className="row"></div>
          <div id="row-5" className="row"></div>
-         <div id="moon-div"><img id="moon" src='./src/images/seven.png' alt="moon" key="moon"></img></div>
+         <div id="moon-div"><img id="moon" src='./src/images/moon.png' alt="moon" key="moon"></img></div>
         </div>
         </div>
     )

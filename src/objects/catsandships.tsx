@@ -10,49 +10,49 @@ export type CatsAndShips = CatOrShip[]
 
 const playerOptions: CatsAndShips = [
     {
-        img: './src/images/zero.png',
+        img: './src/images/spud-ship-1.png',
         id: 'first-ship',
         value: 0,
     },
     
     {
-        img: './src/images/one.png',
+        img: './src/images/spud-ship-2.png',
         id: 'second-ship',
         value: 1,
     },
     
     {
-        img: './src/images/two.png',
+        img: './src/images/spud-ship-3.png',
         id: 'third-ship',
         value: 2,
     },
     
     {
-        img: './src/images/three.png',
+        img: './src/images/gunther-1.png',
         id: 'gunther-head',
         value: 3
     },
     
     {
-        img: './src/images/four.png',
+        img: './src/images/pharoah-1.png',
         id: 'pharoah-head',
         value: 4
     },
     
     {
-        img: './src/images/five.png',
+        img: './src/images/gunther-2.png',
         id: 'gunther-body',
         value: 5
     },
     
     {
-        img: './src/images/six.png',
+        img: './src/images/pharoah-2.png',
         id: 'pharoah-body',
         value: 6
     },
     
     {
-        img: './src/images/seven.png',
+        img: './src/images/moon.png',
         id: 'moon',
     }
 ]
