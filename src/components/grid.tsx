@@ -215,7 +215,7 @@ const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
           clearInterval(populateInterval)
           const explosion1 = document.createElement('img')
           explosion1.setAttribute('alt', "explosion-1")
-          explosion1.setAttribute('src', './src/images/explosion.png')
+          explosion1.setAttribute('src', '/images/explosion.png')
           explosion1.setAttribute('key', setOriginalKey())
           explosion1.setAttribute('class', 'explosion-images')
           explosion1.style.marginBottom = shipPositionTop.toString() + "px"
@@ -395,7 +395,7 @@ const catMarginsArrHor: NumericalMarginsType = generateCatMarginsArrHor()
          <div id="row-3" className="row"></div>
          <div id="row-4" className="row"></div>
          <div id="row-5" className="row"></div>
-         <div id="moon-div"><img id="moon" src='./src/images/moon.png' alt="moon" key="moon"></img></div>
+         <div id="moon-div"><img id="moon" src='/images/moon.png' alt="moon" key="moon"></img></div>
         </div>
         </div>
     )
