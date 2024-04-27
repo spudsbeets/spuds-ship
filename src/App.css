@@ -37,8 +37,8 @@
     100% { margin-top: 150px }
 }
 
-html, body, * {
-    max-width: 100%;
+html, body {
+    width: 100%;
     background-image: url(/images/space.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
